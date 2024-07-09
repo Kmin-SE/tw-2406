@@ -8,12 +8,15 @@ console.log(liList);
 //      Khi sự kiện diễn ra: Thêm/Xóa class checked vào
 
 // Cách 1:
-// for (let li of liList) {
-//     li.addEventListener("click", function() {
-//         this.classList.add("checked");
-//     });
-//     console.log(li);
-// }
+function test() {
+    for (li of liList) {
+        li.addEventListener("click", function() {
+            li.classList.toggle("checked");
+        });
+        console.log(li);
+    }
+}
+
 
 // Cách 2:
 // Array.from(liList).forEach(li => {
@@ -23,12 +26,12 @@ console.log(liList);
 // });
     
 // Cách 3:
-for (let i = 0; i < liList.length; i++) {
-        const li = liList[i];
-        li.addEventListener("click", function() {
-            li.classList.toggle("checked");
-    });
-}
+// for (let i = 0; i < liList.length; i++) {
+//         const li = liList[i];
+//         li.addEventListener("click", function() {
+//             li.classList.toggle("checked");
+//     });
+// }
 
 // const o = {
 //     x: 1,

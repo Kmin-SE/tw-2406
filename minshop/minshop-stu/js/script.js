@@ -98,7 +98,7 @@ function renderBooks3(booksData) {
     `;
   }
 }
-
+//reduce (iteration)
 
 // Chức năng tìm kiếm theo tên
 function searchByName() {
