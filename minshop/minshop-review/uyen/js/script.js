@@ -49,30 +49,31 @@ let books = [
   },
 ];
 
-
 // Đưa data trong array books lên giao diện
-{/* 
+{
+  /* 
     <div class="item">
       <img src="./images/01.jpg" alt="">
       <h2>Cuốn sách A</h2>
       <p>150.000</p>
     </div> 
-*/}
+*/
+}
 
 // Đưa data trong array books lên giao diện
 function renderBooks(bookList) {
   const parentDiv = document.getElementById("list");
   parentDiv.innerHTML = ""; // Xóa nội dung cũ trước khi render
 
-  bookList.forEach(function(book, index) {
+  bookList.forEach(function (book, index) {
     const div = document.createElement("div");
     div.className = "item";
 
     const img = document.createElement("img");
-    img.src = `./images/${book.id}.jpg`; // Đường dẫn đến hình ảnh
+    img.src = `./images/0${book.id}.jpg`; // Đường dẫn đến hình ảnh
     img.alt = book.name;
     div.appendChild(img);
-    
+
     const h2 = document.createElement("h2");
     h2.innerText = book.name;
     div.appendChild(h2);
@@ -85,50 +86,54 @@ function renderBooks(bookList) {
   });
 }
 
+function changeColor() {
+  // chức năng hiển thị màu  khi người dùng nhấp vào ô màu
+  const colors = {
+    yellow: "yellow",
+    red: "red",
+    blue: "blue",
+    gradient: "linear-gradient(to right, yellow,red)",
+  };
 
-// chức năng hiển thị màu  khi người dùng nhấp vào ô màu
-const colors = {
-  yellow: "yellow",
-  red: "red",
-  blue: "blue",
-  gradient: "linear-gradient(to right, yellow,red)"
-}
+  const colorOptions = document.querySelectorAll(".color");
 
-const colorOptions = document.querySelectorAll(".color");
+  //forEach để lặp qua từng phần tử trong colorOptions
+  colorOptions.forEach(function (option) {
+    const colorKey = option.id; //tìm màu tương ứng trong đối tượng colors.
+    // console.log(colorKey);
+    const colorValue = colors[colorKey];
 
-//forEach để lặp qua từng phần tử trong colorOptions
-colorOptions.forEach(function(option) {  
-  const colorKey = option.id;           //tìm màu tương ứng trong đối tượng colors.
-  const colorValue = colors[colorKey];
+    //Thiết lập màu nền cho các nhãn màu
+    // if (colorKey == "gradient") {
+    //   option.style.background = colorValue;
+    // } else {
+    //   option.style.backgroundColor = colorValue;
+    // }
 
-  //Thiết lập màu nền cho các nhãn màu
-  if (colorKey == "gradient") {
-    option.style.background = colorValue;
-  } else {
-    option.style.backgroundColor = colorValue;
-  }
-
-  //Sự kiện click
-  option.addEventListener("click", function() {
-    const header = document.querySelector("header");
-    if (colorKey === 'gradient') {
-      header.style.background = colorValue;
-    } else {
-      header.style.backgroundColor = colorValue;
-    }
+    //Sự kiện click
+    console.log(colorValue);
+    option.addEventListener("click", function () {
+      const header = document.querySelector("header");
+      if (colorKey === "gradient") {
+        header.style.background = colorValue;
+      } else {
+        header.style.backgroundImage = "none";
+        header.style.backgroundColor = colorValue;
+      }
+    });
   });
-});
-
+}
 
 // Chức năng tìm kiếm theo tên
 function searchByName() {
   // Input: Lấy keyword
-  const keyword = document.getElementById("search").value.toLowerCase();  // Chuyển keyword sang chữ thường
+  const keyword = document.getElementById("search").value.toLowerCase(); // Chuyển keyword sang chữ thường
 
   const result = [];
   // Process (thuật toán xử lý): Tìm những book trùng khớp với keyword (duyệt theo array books)
   for (let book of books) {
-    if (book.name.toLowerCase().includes(keyword)) {  // Tìm kiếm không phân biệt chữ hoa chữ thường. (book.name.toLowerCase() == keyword), == yêu cầu chuỗi phải khớp hoàn toàn
+    if (book.name.toLowerCase().includes(keyword)) {
+      // Tìm kiếm không phân biệt chữ hoa chữ thường. (book.name.toLowerCase() == keyword), == yêu cầu chuỗi phải khớp hoàn toàn
       result.push(book);
     }
   }
@@ -139,7 +144,7 @@ function searchByName() {
 
 function addEvents() {
   const input = document.getElementById("search");
-  input.addEventListener("keydown", function(e) {
+  input.addEventListener("keydown", function (e) {
     if (e.key == "Enter") {
       searchByName();
     }
@@ -148,6 +153,7 @@ function addEvents() {
 
 function main() {
   renderBooks(books);
+  // changeColor();
   addEvents();
 }
 main();
