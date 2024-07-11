@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="demo"></p>
+Nhập tên bạn:<input type="text" id="name">
+<button type="button" id="login">Login (fake)</button>
+<button type="button" id="logout">Logout (fake)</button>
+
+<script>
+    const okBtn = document.getElementById("login");
+    const logoutBtn = document.getElementById("logout");
+
+    const username = localStorage.getItem("username");
+
+    // if (username != null) {
+    //     okBtn.style.display = "none";
+    // }
+    // else {
+    //     logoutBtn.style.display = "none";
+    // }
+
+    username ? okBtn.style.display = "none" : logoutBtn.style.display = "none";
+
+    document.getElementById("demo").innerHTML = "Xin chào " + (username || "");
+
+    okBtn.addEventListener("click", () => {
+        const username = document.getElementById("name").value;
+        localStorage.setItem("username",username);
+    });
+
+    logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("username");
+    });
+    
+
+// localStorage.setItem("name","");
+// document.getElementById("demo").innerHTML = localStorage.getItem("name");
+</script>
+
+</body>
+</html>
