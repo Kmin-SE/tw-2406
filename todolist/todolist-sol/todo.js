@@ -32,7 +32,7 @@ for (i = 0; i < close.length; i++) {
 // );
 
 var items = document.getElementsByTagName("li");
-for (item of items) {
+for (const item of items) {
   item.addEventListener("click", function () {
     this.classList.toggle("checked");
   });
