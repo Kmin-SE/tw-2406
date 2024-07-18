@@ -55,6 +55,9 @@ function preprocessing(str, callback) {
 }
 
 
+const a = preprocessing("   hello  ");
+const res = checkAfter(a, 2);
+
 const result = preprocessing("   hello", (str) => {checkAfter(str, 2)});
 
 
